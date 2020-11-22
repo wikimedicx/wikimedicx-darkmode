@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+	<style>
+		body {
+			margin: 50px 200px;
+			font-family: 'Poppins', sans-serif;
+		}
+
+		/*toggle*/
+		.toggle {
+			float: right;
+		}
+		.toggle-bg {
+			background-color: #222;
+			display: block;
+			float: left;
+			height: 30px;
+			position: relative;
+			width: 100px;
+			border-radius: 10px
+		}
+		.toggle-bg input{
+		    height: 28px;
+		    left: 0;
+		    margin: 0; /* Reset the margins and padding */
+		    opacity: 0; /* Invisible! */
+		    padding: 0;
+		    position: absolute;
+		    top: -10px; /* Shift vertically */
+		    width: 100px;
+		    z-index: 2; /* We want the input to be over the span.switch, which we'll give a z-index of 1 */
+	}
+
+		.switch{
+		    background: #ccc;
+		    display: block;
+		    float: left;
+		    height: 40px;
+		    left: -1px; /* This is the starting point. When adding a border radius, a small bit of the background is shown if we use left: 0;, so -1px is best.*/
+		    position: relative;
+		    top: -5px; /* ...To keep it centered vertically */
+		    width: 50px;
+		    z-index: 1; /* Remember, it must be below the invisible inputs */
+		    border-radius: 15px;
+	}
+
+	.toggle-bg input:checked~.switch{ left: -1px; } /* initial toggle position */
+	.toggle-bg input~:checked~.switch{ left: 50px; } /* final relative toggle position */
+	.toggle-bg input:checked{ z-index: 0; }
+
+	/* Footer */
+	footer {
+		text-align: center;
+	}
+	footer a {
+		color: black;
+		text-decoration: none;
+	}
+	footer i {
+		margin: 50px;
+	}
+
+	/* DarkMode */
+	#darkmode {
+		background-color: black;
+		color: white;
+	}
+	#darkmode .toggle-bg {
+		background-color: red;
+	}
+	#darkmode footer a {
+		color: white;
+	}
+	</style>
+</head>
+<body>
+	<div class="toggle">
+		<span class="toggle-bg">
+			<input type="radio" name="toggle" value="off" onclick="setDarkMode(false)">
+			<input type="radio" name="toggle" value="on" onclick="setDarkMode(true)">
+			<span class="switch"></span>
+		</span>
+	</div>
+	<h1>Dark Mode Prototype</h1>
+	
+	<p>Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Nesciunt dolorum quasi sint fuga officia animi id quae blanditiis eius impedit quos ullam perspiciatis aliquid, quis dicta iste, sunt nulla, libero.</p>
+
+	<p>Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Ducimus, illo!</p>
+
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur nihil ab iusto doloremque ipsam molestiae, dicta tempora numquam minus sapiente, nesciunt ipsum expedita explicabo nam praesentium fugiat sed natus recusandae.</p>
+
+	<footer>
+		<a href="https://github.com/wikimedicx">
+			<i class="fab fa-github fa-3x"></i>
+		</a>
+
+		<a href="https://twitter.com/afriiizal">
+			<i class="fab fa-twitter fa-3x"></i>
+		</a>
+
+		<a href="https://www.instagram.com/afrriiizall/">
+			<i class="fab fa-instagram fa-3x"></i>
+		</a>
+		<p>Made with ❤️ by wikimedicx</p>
+	</footer>
+
+	<script>
+		if (localStorage.getItem('theme') == 'dark') {
+			setDarkMode(true);
+		}
+
+		function setDarkMode(isDark) {
+			if (isDark) {
+				document.body.setAttribute('id', 'darkmode');
+				localStorage.setItem('theme', 'dark');
+			} else {
+				document.body.setAttribute('id', '')
+				localStorage.removeItem('theme');
+			}
+		}
+	</script>
+</body>
+</html>
